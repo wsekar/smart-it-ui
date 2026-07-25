@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kelola Kelas — SMART IT</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/style.css">
+
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+
+/* AGAR SIDEBAR TETAP SEPERTI DASHBOARD */
+body{
+margin:0;
+background:#f6f7fb;
+}
+
+
+
+/* AREA KONTEN KANAN */
+
+.main{
+padding:25px;
+}
+
+
+
+/* HEADER */
+
+.header{
+margin-bottom:25px;
+}
+
+.title{
+font-size:26px;
+font-weight:800;
+color:#111827;
+}
+
+.subtitle{
+color:#6b7280;
+font-size:14px;
+margin-top:5px;
+}
+
+
+
+
+/* CARD */
+
+.card{
+
+background:white;
+border-radius:16px;
+padding:22px;
+margin-bottom:20px;
+border:1px solid #eeeeee;
+
+box-shadow:
+0 4px 15px rgba(0,0,0,.03);
+
+}
+
+
+
+
+/* REQUEST HEADER */
+
+.request{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+
+.request h3{
+font-size:18px;
+margin:0;
+}
+
+
+
+/* BADGE */
+
+.badge{
+
+background:#fee2e2;
+color:#dc2626;
+
+padding:4px 12px;
+
+border-radius:20px;
+
+font-size:12px;
+
+margin-left:8px;
+
+font-weight:700;
+
+}
+
+
+
+/* BUTTON */
+
+.btn{
+
+padding:9px 15px;
+
+border-radius:10px;
+
+border:none;
+
+cursor:pointer;
+
+font-size:13px;
+
+font-weight:600;
+
+}
+
+
+
+.btn-green{
+
+background:#10b981;
+color:white;
+
+}
+
+
+
+.btn-red{
+
+background:#fee2e2;
+color:#dc2626;
+
+}
+
+
+
+.btn:hover{
+opacity:.85;
+}
+
+
+
+
+/* USER REQUEST */
+
+.user-row{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:15px 0;
+
+border-bottom:1px solid #eeeeee;
+
+}
+
+
+.user-left{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.avatar{
+
+width:42px;
+height:42px;
+
+border-radius:50%;
+
+background:#dbeafe;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+
+
+
+/* TABLE */
+
+.table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:15px;
+
+}
+
+
+
+.table th{
+
+font-size:13px;
+
+color:#6b7280;
+
+}
+
+
+
+.table th,
+.table td{
+
+padding:14px;
+
+border-bottom:1px solid #eeeeee;
+
+text-align:left;
+
+}
+
+
+
+.progress{
+
+height:7px;
+
+width:130px;
+
+display:inline-block;
+
+background:#eeeeee;
+
+border-radius:10px;
+
+overflow:hidden;
+
+}
+
+
+
+.progress div{
+
+height:100%;
+
+background:#2563eb;
+
+}
+
+
+
+
+.nilai{
+
+font-weight:800;
+
+}
+
+
+
+/* LINK */
+
+.link{
+
+margin-top:18px;
+
+color:#2563eb;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+
+
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.main{
+padding:15px;
+}
+
+.request{
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+}
+
+}
+
+</style>
+
+
+</head>
+
+
+<body data-page="guru-kelola-kelas">
+
+
+<div class="app-shell">
+
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'" />
+      <div class="brand-name">SMART IT</div>
+    </div>
+
+    <div class="role-pill">
+      <span class="dot"></span> Guru
+    </div>
+
+
+    <nav class="nav-group">
+
+      <a class="nav-item" href="dashboard.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        Dashboard
+      </a>
+
+
+      <a class="nav-item active" href="kelola-kelas.html">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+          <path d="M16 3.13a4 4 0 010 7.75"/>
+        </svg>
+
+        Kelola Kelas
+
+        <span class="badge-count">
+          3
+        </span>
+
+      </a>
+
+
+
+      <a class="nav-item" href="kelola-modul.html">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+        </svg>
+
+        Kelola Modul
+
+      </a>
+
+
+
+
+     <a class="nav-item" href="buat-kuis.html">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+<path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+</svg>
+Buat Kuis
+</a>
+
+
+
+
+      <a class="nav-item" href="nilai-laporan.html">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+
+        Nilai & Laporan
+
+      </a>
+
+
+
+
+      <a class="nav-item" href="laporan.html">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3v18h18"/>
+          <path d="M18.7 8l-5.1 5.1-2.5-2.5L7 14.7"/>
+        </svg>
+
+        Laporan
+
+      </a>
+
+
+
+
+      <a class="nav-item" href="profil.html">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+
+        Profil
+
+      </a>
+
+
+    </nav>
+
+
+
+    <div class="sidebar-user">
+
+      <div class="avatar-circle">
+        AR
+      </div>
+
+
+      <div class="who">
+
+        <b>
+        Pak Ahmad Rid...
+        </b>
+
+        <span>
+        Guru
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+
+
+    <a href="index.html" class="logout-link">
+
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+
+      <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+      <polyline points="16 17 21 12 16 7"/>
+      <line x1="21" y1="12" x2="9" y2="12"/>
+
+      </svg>
+
+      Keluar
+
+    </a>
+
+
+</aside>
+
+
+
+
+
+
+<!-- KONTEN UTAMA -->
+
+
+<main class="main">
+
+
+
+<div class="header">
+
+
+<div class="title">
+Kelola Kelas
+</div>
+
+
+<div class="subtitle">
+Manajemen kelas dan siswa
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- PERMINTAAN BERGABUNG -->
+
+
+<div class="card">
+
+
+<div class="request">
+
+
+<h3>
+Permintaan Bergabung
+
+<span class="badge" id="count">
+3
+</span>
+
+</h3>
+
+
+
+<div>
+
+
+<button class="btn"
+onclick="filterStatus('menunggu')">
+
+Menunggu
+
+</button>
+
+
+
+<button class="btn"
+onclick="filterStatus('semua')">
+
+Semua
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+<div id="requestList">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- DATA KELAS -->
+
+
+<div class="card">
+
+
+<h3>
+Kelas 8A Informatika
+</h3>
+
+
+
+<table class="table">
+
+
+<thead>
+
+
+<tr>
+
+<th>
+Nama Siswa
+</th>
+
+
+<th>
+Modul Selesai
+</th>
+
+
+<th>
+Rata-rata
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="tableData">
+
+
+</tbody>
+
+
+</table>
+
+
+
+
+<div class="link"
+onclick="alert('Menuju halaman nilai lengkap')">
+
+Lihat Nilai Lengkap →
+
+</div>
+
+
+
+</div>
+
+<script>
+
+
+/* ================= DATA ================= */
+
+
+let requests=[
+
+{
+nama:"Reza Firmansyah",
+kelas:"8A"
+},
+
+{
+nama:"Maya Sari",
+kelas:"8A"
+},
+
+{
+nama:"Fajar Nugroho",
+kelas:"9A"
+}
+
+];
+
+
+
+
+
+let siswa=[
+
+{
+nama:"Andi Pratama",
+modul:18,
+nilai:88
+},
+
+{
+nama:"Budi Santoso",
+modul:16,
+nilai:82
+},
+
+{
+nama:"Citra Lestari",
+modul:20,
+nilai:91
+},
+
+{
+nama:"Dewi Rahayu",
+modul:14,
+nilai:75
+}
+
+];
+
+
+
+
+
+
+
+/* ================= TAMPILKAN REQUEST ================= */
+
+
+function renderRequest(){
+
+
+let list=document.getElementById("requestList");
+
+
+list.innerHTML="";
+
+
+
+requests.forEach((r,i)=>{
+
+
+list.innerHTML+=`
+
+<div class="user-row">
+
+
+<div class="user-left">
+
+
+<div class="avatar">
+👤
+</div>
+
+
+
+<div>
+
+<b>
+${r.nama}
+</b>
+
+
+<br>
+
+
+<small>
+Kelas ${r.kelas}
+</small>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div>
+
+
+<button class="btn btn-green"
+onclick="setuju(${i})">
+
+Setujui
+
+</button>
+
+
+
+<button class="btn btn-red"
+onclick="tolak(${i})">
+
+Tolak
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+
+document.getElementById("count").innerHTML=requests.length;
+
+
+
+}
+
+
+
+
+
+/* ================= TABEL SISWA ================= */
+
+
+function renderTable(){
+
+
+let table=document.getElementById("tableData");
+
+
+table.innerHTML="";
+
+
+
+siswa.forEach(s=>{
+
+
+table.innerHTML+=`
+
+<tr>
+
+
+<td>
+
+${s.nama}
+
+</td>
+
+
+
+
+<td>
+
+
+<div class="progress">
+
+<div style="width:${s.modul*5}%">
+
+</div>
+
+</div>
+
+
+${s.modul} Modul
+
+
+</td>
+
+
+
+
+
+<td class="nilai">
+
+${s.nilai}
+
+</td>
+
+
+
+</tr>
+
+
+`;
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+/* ================= BUTTON AKSI ================= */
+
+
+
+function setuju(i){
+
+
+alert(
+"Permintaan disetujui: "
++
+requests[i].nama
+);
+
+
+
+requests.splice(i,1);
+
+
+
+renderRequest();
+
+
+
+}
+
+
+
+
+
+function tolak(i){
+
+
+alert(
+"Permintaan ditolak: "
++
+requests[i].nama
+);
+
+
+
+requests.splice(i,1);
+
+
+
+renderRequest();
+
+
+
+}
+
+
+
+
+
+function filterStatus(type){
+
+
+if(type==="menunggu"){
+
+
+alert(
+"Menampilkan permintaan yang menunggu"
+);
+
+
+}
+
+else{
+
+
+alert(
+"Menampilkan semua permintaan"
+);
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+/* ================= SIDEBAR AKTIF ================= */
+
+
+document.querySelectorAll(".nav-item")
+.forEach(item=>{
+
+
+item.addEventListener("click",function(){
+
+
+document.querySelectorAll(".nav-item")
+.forEach(nav=>nav.classList.remove("active"));
+
+
+this.classList.add("active");
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+/* ================= LOAD ================= */
+
+
+renderRequest();
+
+renderTable();
+
+
+
+</script>
+
+
+
+</main>
+
+</div>
+
+
+</body>
+
+</html>

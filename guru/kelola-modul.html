@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelola Modul</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+
+body{
+  background:#f6f7fb;
+}
+
+/* MAIN */
+.content{
+  padding:20px 30px;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.title{font-size:22px;font-weight:600;}
+.subtitle{font-size:14px;color:#777;}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.avatar{
+  width:36px;height:36px;border-radius:50%;background:#ddd;
+}
+
+/* TOPBAR */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:20px 0;
+}
+
+.search{
+  flex:1;
+  display:flex;
+  align-items:center;
+  background:white;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid #eee;
+}
+.search input{
+  border:none;outline:none;flex:1;
+}
+
+/* FILTER */
+.filters{
+  display:flex;
+  gap:8px;
+}
+.filter{
+  padding:8px 14px;
+  border-radius:10px;
+  background:#eee;
+  cursor:pointer;
+  font-size:14px;
+}
+.filter.active{
+  background:#2563eb;
+  color:white;
+}
+
+/* BUTTON */
+.btn{
+  padding:10px 16px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  font-weight:500;
+  transition:0.2s;
+}
+.btn:hover{transform:scale(1.05);}
+
+.btn-outline{
+  border:1px solid #22c55e;
+  color:#22c55e;
+  background:white;
+}
+.btn-primary{
+  background:#2563eb;
+  color:white;
+}
+
+/* CARDS */
+.cards{
+  display:flex;
+  gap:15px;
+  margin-bottom:20px;
+}
+.card{
+  flex:1;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  border:1px solid #eee;
+}
+.card h2{font-size:22px;}
+.card p{color:#777;font-size:13px;}
+
+/* TABLE */
+.table-box{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  border:1px solid #eee;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+th,td{
+  padding:15px;
+  text-align:left;
+}
+th{
+  background:#fafafa;
+  font-size:13px;
+  color:#888;
+}
+tr{border-bottom:1px solid #eee;}
+tr:hover{background:#f9fbff;}
+
+.file{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* BADGE */
+.badge{
+  padding:5px 10px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+.video{background:#e0ecff;color:#2563eb;}
+.pdf{background:#ffe4e6;color:#dc2626;}
+.slide{background:#fff7ed;color:#ea580c;}
+.quiz{background:#dcfce7;color:#16a34a;}
+.tugas{background:#f3e8ff;color:#9333ea;}
+
+.aktif{background:#dcfce7;color:#16a34a;}
+.draft{background:#fef3c7;color:#ca8a04;}
+
+/* DROPDOWN */
+.action{position:relative;cursor:pointer;}
+.dropdown{
+  display:none;
+  position:absolute;
+  right:0;
+  top:20px;
+  background:white;
+  border:1px solid #eee;
+  border-radius:10px;
+  box-shadow:0 5px 10px rgba(0,0,0,0.05);
+}
+.dropdown div{
+  padding:8px 12px;
+  cursor:pointer;
+}
+.dropdown div:hover{
+  background:#f5f5f5;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  z-index:999;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-content{
+  width:90%;
+  max-width:500px;
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  animation:popup 0.25s ease;
+}
+
+@keyframes popup{
+  from{transform:scale(0.9);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+.modal iframe{
+  width:100%;
+  height:500px;
+  border:none;
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:20px;
+  cursor:pointer;
+  background:white;
+  border-radius:50%;
+  padding:2px 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+<div class="header">
+  <div>
+    <div class="title">Kelola Materi</div>
+    <div class="subtitle">Unggah modul, buat kuis, dan kelola konten</div>
+  </div>
+
+  <div class="header-right">
+    <i data-lucide="bell"></i>
+    <div class="avatar"></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <div class="search">
+    <i data-lucide="search"></i>
+    <input id="search" placeholder="Cari judul modul atau kelas...">
+  </div>
+
+  <div class="filters">
+    <div class="filter active">Semua</div>
+    <div class="filter">Video</div>
+    <div class="filter">PDF</div>
+    <div class="filter">Slides</div>
+    <div class="filter">Quiz</div>
+    <div class="filter">Assignment</div>
+  </div>
+
+  <button class="btn btn-outline" onclick="alert('Buat Kuis diklik')">+ Buat Kuis</button>
+  <button class="btn btn-primary" onclick="openModal()">Unggah Modul</button>
+</div>
+
+<div class="cards">
+  <div class="card"><h2>8</h2><p>Total Modul</p></div>
+  <div class="card"><h2>6</h2><p>Dipublikasikan</p></div>
+  <div class="card"><h2>2</h2><p>Draft</p></div>
+  <div class="card"><h2 style="color:#9333ea">146</h2><p>Total Tonton</p></div>
+</div>
+
+<div class="table-box">
+<table>
+<thead>
+<tr>
+<th>JUDUL MODUL</th>
+<th>KELAS</th>
+<th>JENIS</th>
+<th>DIPERBARUI</th>
+<th>STATUS</th>
+<th>AKSI</th>
+</tr>
+</thead>
+<tbody id="data"></tbody>
+</table>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div id="uploadModal" class="modal" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe src="unggah-modul.html"></iframe>
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+/* MODAL */
+function openModal(){
+  document.getElementById("uploadModal").classList.add("show");
+}
+function closeModal(){
+  document.getElementById("uploadModal").classList.remove("show");
+}
+
+/* DATA */
+const raw=[
+["Pengenalan Algoritma","Kelas 8A","video","18 Jul 2026","aktif"],
+["Membuat Flowchart Sederhana","Kelas 8A","pdf","17 Jul 2026","aktif"],
+["Dasar-dasar Python","Kelas 9A","video","16 Jul 2026","aktif"],
+["Struktur Data Dasar","Kelas 9A","slide","15 Jul 2026","draft"],
+["Pengenalan HTML & CSS","Kelas 8B","video","14 Jul 2026","aktif"],
+["Kuis Algoritma - Bab 3","Kelas 8A","quiz","13 Jul 2026","aktif"],
+["Latihan Soal Flowchart","Kelas 8A","tugas","12 Jul 2026","aktif"],
+["Internet & Keamanan Siber","Kelas 7A","pdf","11 Jul 2026","draft"]
+];
+
+let data=[...raw];
+const table=document.getElementById("data");
+
+function icon(t){
+return{
+video:"video",
+pdf:"file-text",
+slide:"presentation",
+quiz:"check-square",
+tugas:"clipboard"
+}[t];
+}
+
+function render(){
+table.innerHTML="";
+data.forEach((d,i)=>{
+table.innerHTML+=`
+<tr>
+<td class="file"><i data-lucide="${icon(d[2])}"></i>${d[0]}</td>
+<td>${d[1]}</td>
+<td><span class="badge ${d[2]}">${d[2]}</span></td>
+<td>${d[3]}</td>
+<td><span class="badge ${d[4]}">${d[4]}</span></td>
+<td class="action" onclick="toggle(${i})">
+⋯
+<div class="dropdown" id="dd${i}">
+<div onclick="alert('Edit ${d[0]}')">Edit</div>
+<div onclick="alert('Hapus ${d[0]}')">Hapus</div>
+</div>
+</td>
+</tr>`;
+});
+lucide.createIcons();
+}
+render();
+
+/* SEARCH */
+document.getElementById("search").oninput=e=>{
+let v=e.target.value.toLowerCase();
+data=raw.filter(d=>d[0].toLowerCase().includes(v)||d[1].toLowerCase().includes(v));
+render();
+};
+
+/* FILTER */
+document.querySelectorAll(".filter").forEach(btn=>{
+btn.onclick=()=>{
+document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+
+let t=btn.innerText.toLowerCase();
+
+if(t==="semua") data=[...raw];
+else if(t==="assignment") data=raw.filter(d=>d[2]==="tugas");
+else data=raw.filter(d=>d[2]===t);
+
+render();
+};
+});
+
+/* DROPDOWN */
+function toggle(i){
+document.querySelectorAll(".dropdown").forEach(d=>d.style.display="none");
+let el=document.getElementById("dd"+i);
+el.style.display = el.style.display==="block" ? "none":"block";
+}
+</script>
+
+</body>
+</html>

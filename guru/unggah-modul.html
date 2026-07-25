@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Unggah Modul</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: transparent;
+}
+
+/* CENTER FIX */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* BOX LEBIH PROPORSIONAL */
+.upload-box-wrapper {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 22px;
+}
+
+/* TITLE */
+.upload-box-wrapper h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+/* FORM */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 9px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  font-size: 13px;
+}
+
+/* UPLOAD AREA (LEBIH RINGKAS) */
+.upload-area {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 10px;
+  color: #666;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.upload-area span {
+  color: #2563eb;
+}
+
+/* BUTTON */
+.actions {
+  display: flex;
+  margin-top: 18px;
+}
+
+.btn-cancel {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+}
+
+.btn-submit {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="upload-box-wrapper">
+    <h2>Unggah Modul Baru</h2>
+
+    <div class="form-group">
+      <label>Judul Modul</label>
+      <input id="judul" type="text" placeholder="Masukkan judul modul">
+    </div>
+
+    <div class="form-group">
+      <label>Kelas</label>
+      <select id="kelas">
+        <option>Kelas 8A Informatika</option>
+        <option>Kelas 9A Informatika</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Jenis Materi</label>
+      <select id="jenis">
+        <option>Video</option>
+        <option>PDF</option>
+        <option>Slide</option>
+      </select>
+    </div>
+
+    <div class="upload-area" onclick="pilihFile()">
+      ⬆<br>
+      Seret atau <span>pilih file</span><br>
+      <small id="fileName">Belum ada file</small>
+      <input type="file" id="fileInput" hidden onchange="showFile()">
+    </div>
+
+    <div class="actions">
+      <button class="btn-cancel" onclick="batal()">Batal</button>
+      <button class="btn-submit" onclick="upload()">Unggah</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function pilihFile(){
+  document.getElementById("fileInput").click();
+}
+
+function showFile(){
+  let file = document.getElementById("fileInput").files[0];
+  document.getElementById("fileName").innerText = file ? file.name : "Belum ada file";
+}
+
+function batal(){
+  alert("Dibatalkan");
+}
+
+function upload(){
+  let judul = document.getElementById("judul").value;
+  if(!judul){
+    alert("Judul wajib diisi!");
+    return;
+  }
+  alert("Upload berhasil!");
+}
+</script>
+
+<script>
+function batal(){
+  window.parent.document.getElementById("uploadModal").classList.remove("show");
+}
+</script>
+</body>
+</html>

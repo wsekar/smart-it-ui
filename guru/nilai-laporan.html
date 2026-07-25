@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduInformatika</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+
+body{background:#f6f7fb;}
+
+/* MAIN (FULL WIDTH) */
+.main{
+  padding:20px 30px;
+}
+
+/* HEADER */
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;}
+.title{font-size:22px;font-weight:600;}
+.subtitle{font-size:14px;color:#777;}
+
+.header-right{display:flex;gap:15px;align-items:center;}
+.avatar{width:36px;height:36px;border-radius:50%;background:#ddd;}
+
+/* CARDS */
+.cards{display:flex;gap:15px;margin:20px 0;}
+.card{
+  flex:1;padding:20px;border-radius:15px;
+  background:white;border:1px solid #eee;
+}
+.blue{color:#2563eb;}
+.green{color:#16a34a;}
+.purple{color:#9333ea;}
+.orange{color:#f97316;}
+
+/* TOPBAR */
+.topbar{
+  display:flex;gap:10px;align-items:center;
+  background:white;padding:10px;border-radius:12px;
+  border:1px solid #eee;margin-bottom:20px;
+}
+.search{flex:1;display:flex;gap:8px;align-items:center;border:1px solid #eee;padding:8px;border-radius:10px;}
+.search input{border:none;outline:none;width:100%;}
+
+.select{padding:8px;border-radius:10px;border:1px solid #eee;}
+
+.btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;}
+.excel{background:#16a34a;color:white;}
+.csv{border:1px solid #16a34a;color:#16a34a;background:white;}
+.pdf{border:1px solid #dc2626;color:#dc2626;background:white;}
+
+/* TABLE */
+.table-box{
+  background:white;border-radius:15px;border:1px solid #eee;overflow:hidden;
+}
+table{width:100%;border-collapse:collapse;}
+th,td{padding:14px;text-align:left;}
+th{background:#fafafa;font-size:13px;color:#888;}
+tr{border-bottom:1px solid #eee;}
+
+.user-cell{display:flex;align-items:center;gap:10px;}
+.avatar-sm{width:32px;height:32px;border-radius:50%;background:#ddd;}
+
+/* STATUS */
+.badge{padding:5px 10px;border-radius:10px;font-size:12px;}
+.lulus{background:#dcfce7;color:#16a34a;}
+.gagal{background:#fee2e2;color:#dc2626;}
+
+.nilai-hijau{color:#16a34a;font-weight:600;}
+.nilai-merah{color:#dc2626;font-weight:600;}
+.nilai-orange{color:#f97316;font-weight:600;}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+  <div>
+    <div class="title">Nilai & Laporan</div>
+    <div class="subtitle">Rekap hasil kuis dan nilai siswa</div>
+  </div>
+  <div class="header-right">
+    <i data-lucide="bell"></i>
+    <div class="avatar"></div>
+  </div>
+</div>
+
+<div class="cards">
+  <div class="card"><h2 class="blue">10</h2><p>Total Data</p></div>
+  <div class="card"><h2 class="green">79</h2><p>Rata-rata Nilai</p></div>
+  <div class="card"><h2 class="purple">8</h2><p>Siswa Lulus</p></div>
+  <div class="card"><h2 class="orange">95</h2><p>Nilai Tertinggi</p></div>
+</div>
+
+<div class="topbar">
+  <div class="search">
+    <i data-lucide="search"></i>
+    <input id="search" placeholder="Cari nama siswa atau kuis...">
+  </div>
+
+  <select class="select"><option>Semua</option></select>
+  <select class="select"><option>Semua</option></select>
+
+  <button class="btn excel">Export Excel</button>
+  <button class="btn csv">CSV</button>
+  <button class="btn pdf">Cetak PDF</button>
+</div>
+
+<div class="table-box">
+<table>
+<thead>
+<tr>
+<th>NO</th>
+<th>SISWA</th>
+<th>KELAS</th>
+<th>JUDUL KUIS</th>
+<th>NILAI</th>
+<th>TANGGAL</th>
+<th>STATUS</th>
+</tr>
+</thead>
+<tbody id="data"></tbody>
+</table>
+</div>
+
+</div>
+
+<script>
+lucide.createIcons();
+
+/* DATA */
+const raw=[
+["Andi Pratama","Kelas 8A","Kuis Algoritma & Flowchart",88,"19 Jul 2026","lulus"],
+["Budi Santoso","Kelas 8A","Kuis Algoritma & Flowchart",82,"19 Jul 2026","lulus"],
+["Citra Lestari","Kelas 8A","Kuis Algoritma & Flowchart",91,"19 Jul 2026","lulus"],
+["Dewi Rahayu","Kelas 8A","Kuis Algoritma & Flowchart",65,"19 Jul 2026","gagal"],
+["Erik Santoso","Kelas 9A","Kuis Python Dasar",79,"18 Jul 2026","lulus"],
+["Fitri Wahyu","Kelas 9A","Kuis Python Dasar",85,"18 Jul 2026","lulus"],
+["Gilang Prabowo","Kelas 7A","Kuis Komputer",72,"17 Jul 2026","lulus"],
+["Hana Permata","Kelas 7A","Kuis Komputer",58,"17 Jul 2026","gagal"],
+["Iko Saputra","Kelas 8A","Kuis HTML & CSS",95,"16 Jul 2026","lulus"],
+["Julia Ayu","Kelas 9A","Kuis Python Dasar",70,"15 Jul 2026","lulus"]
+];
+
+let data=[...raw];
+const table=document.getElementById("data");
+
+function warnaNilai(n){
+if(n>=85) return "nilai-hijau";
+if(n>=70) return "nilai-orange";
+return "nilai-merah";
+}
+
+function render(){
+table.innerHTML="";
+data.forEach((d,i)=>{
+table.innerHTML+=`
+<tr>
+<td>${i+1}</td>
+<td class="user-cell"><div class="avatar-sm"></div>${d[0]}</td>
+<td>${d[1]}</td>
+<td>${d[2]}</td>
+<td class="${warnaNilai(d[3])}">${d[3]}</td>
+<td>${d[4]}</td>
+<td><span class="badge ${d[5]=='lulus'?'lulus':'gagal'}">${d[5]=='lulus'?'✓ Lulus':'✕ Tidak Lulus'}</span></td>
+</tr>`;
+});
+}
+render();
+
+/* SEARCH */
+document.getElementById("search").oninput=e=>{
+let v=e.target.value.toLowerCase();
+data=raw.filter(d=>d[0].toLowerCase().includes(v)||d[2].toLowerCase().includes(v));
+render();
+};
+</script>
+
+</body>
+</html>
