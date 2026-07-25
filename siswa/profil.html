@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil Saya — SMART IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .btn-solid{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 22px;border:none;border-radius:10px;
+    background:linear-gradient(135deg,var(--primary),#4f46e5);
+    color:#fff;font-family:inherit;font-weight:700;font-size:14px;
+    cursor:pointer;box-shadow:0 4px 12px rgba(79,70,229,.25);
+    transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;
+  }
+  .btn-solid:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(79,70,229,.32);filter:brightness(1.04);}
+  .btn-solid:active{transform:translateY(0);box-shadow:0 2px 8px rgba(79,70,229,.25);}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 20px;border:1.5px solid var(--border);border-radius:10px;
+    background:#fff;color:var(--gray-dark,#374151);font-family:inherit;font-weight:700;font-size:14px;
+    cursor:pointer;transition:border-color .15s ease,background .15s ease,color .15s ease;
+  }
+  .btn-outline:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+          <img src="../assets/logo.png" alt="Logo" class="logo-img" />
+      <div class="brand-name">SMART IT</div></div>
+    <div class="role-pill"><span class="dot"></span> Siswa</div>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+      <a class="nav-item" href="kelasku.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Kelasku</a>
+      <a class="nav-item" href="modul-belajar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Modul Belajar</a>
+      <a class="nav-item" href="tugas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Tugas</a>
+      <a class="nav-item" href="kuis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Kuis<span class="badge-count">1</span></a>
+      <a class="nav-item" href="nilai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Nilai</a>
+      <a class="nav-item active" href="profil.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar-circle">BS</div>
+      <div class="who"><b>Budi Santoso</b><span>Siswa</span></div>
+    </div>
+    <a href="index.html" class="logout-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Keluar</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;">
+        <button class="mobile-menu-btn">☰</button>
+        <div>
+          <h1>Profil Saya</h1>
+          <p class="sub">Kelola informasi akun dan data pribadimu</p>
+        </div>
+      </div>
+      <div class="topbar-icons">
+        <div style="position:relative;">
+          <button class="icon-btn" data-dropdown-trigger="notifPanel">🔔<span class="ping"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div style="padding:8px 10px;font-weight:800;font-size:13px;">Notifikasi</div>
+            <a href="#">📝 Kuis Algoritma & Flowchart jatuh tempo besok</a>
+            <a href="#">✅ Tugas HTML & CSS telah dinilai</a>
+            <a href="#">📢 Materi baru ditambahkan di Kelas 9A</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="avatar-circle" data-dropdown-trigger="userPanel">BS</div>
+          <div class="dropdown-panel" id="userPanel">
+            <a href="profil.html">👤 Profil Saya</a>
+            <hr>
+            <a href="index.html">🚪 Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- Header profil: avatar besar + ringkasan -->
+      <div class="card card-pad" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <div class="avatar-circle" style="width:78px;height:78px;font-size:26px;">BS</div>
+        <div style="flex:1;min-width:200px;">
+          <h2 style="margin:0 0 4px;font-size:20px;">Budi Santoso</h2>
+          <p class="sub" style="margin:0;">NIS 2024081045 · Kelas 8A Informatika</p>
+        </div>
+        <button class="btn-outline" type="button">✏️ Edit Foto</button>
+      </div>
+
+      <!-- Statistik singkat -->
+      <div class="stat-cards">
+        <div class="card stat-card"><div class="ic" style="background:var(--primary-light);color:var(--primary);">👥</div><h3>3</h3><p>Kelas Aktif · kelas diikuti</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--green-light);color:var(--green-dark);">✅</div><h3>24</h3><p>Modul Selesai · dari 35 modul</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--purple-light);color:var(--purple);">📈</div><h3>82</h3><p>Rata-rata Nilai · dari 100 poin</p></div>
+      </div>
+
+      <div class="dash-grid">
+
+        <!-- Data pribadi -->
+        <div class="card card-pad">
+          <h3 style="margin:0 0 16px;font-size:16px;">Data Pribadi</h3>
+          <form id="profileForm">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label style="font-size:12.5px;font-weight:600;color:var(--gray);">Nama Lengkap</label>
+                <input type="text" value="Budi Santoso" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;">
+              </div>
+              <div>
+                <label style="font-size:12.5px;font-weight:600;color:var(--gray);">NIS</label>
+                <input type="text" value="2024081045" disabled style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;background:#f9fafb;">
+              </div>
+              <div>
+                <label style="font-size:12.5px;font-weight:600;color:var(--gray);">Kelas</label>
+                <input type="text" value="8A Informatika" disabled style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;background:#f9fafb;">
+              </div>
+              <div>
+                <label style="font-size:12.5px;font-weight:600;color:var(--gray);">Tanggal Lahir</label>
+                <input type="date" value="2011-03-14" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;">
+              </div>
+              <div>
+                <label style="font-size:12.5px;font-weight:600;color:var(--gray);">Email</label>
+                <input type="email" value="budi.santoso@smartit.sch.id" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;">
+              </div>
+              <div>
+                <label style="font-size:12.5px;font-weight:600;color:var(--gray);">No. Telepon</label>
+                <input type="text" value="0812-3456-7890" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;">
+              </div>
+              <div style="grid-column:1 / -1;">
+                <label style="font-size:12.5px;font-weight:600;color:var(--gray);">Alamat</label>
+                <input type="text" value="Jl. Merdeka No. 12, Madiun, Jawa Timur" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;">
+              </div>
+            </div>
+            <button class="btn-solid" type="submit" style="margin-top:16px;">💾 Simpan Perubahan</button>
+          </form>
+        </div>
+
+        <!-- Keamanan akun -->
+        <div class="card card-pad">
+          <h3 style="margin:0 0 16px;font-size:16px;">Keamanan Akun</h3>
+          <form id="passwordForm" style="display:flex;flex-direction:column;gap:12px;">
+            <div>
+              <label style="font-size:12.5px;font-weight:600;color:var(--gray);">Password Saat Ini</label>
+              <input type="password" placeholder="••••••••" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;">
+            </div>
+            <div>
+              <label style="font-size:12.5px;font-weight:600;color:var(--gray);">Password Baru</label>
+              <input type="password" placeholder="••••••••" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;">
+            </div>
+            <div>
+              <label style="font-size:12.5px;font-weight:600;color:var(--gray);">Konfirmasi Password Baru</label>
+              <input type="password" placeholder="••••••••" style="width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;margin-top:4px;">
+            </div>
+            <button class="btn-solid" type="submit" style="margin-top:4px;align-self:flex-start;">🔒 Ubah Password</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../js/script.js"></script>
+<script>
+  document.getElementById('profileForm')?.addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Perubahan profil berhasil disimpan.');
+  });
+  document.getElementById('passwordForm')?.addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Password berhasil diperbarui.');
+  });
+</script>
+</body>
+</html>

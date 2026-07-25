@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul Belajar — SMART IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+    <img src="../assets/logo.png" alt="Logo" class="logo-img" />
+    <div class="brand-name">SMART IT</div></div>
+    <div class="role-pill"><span class="dot"></span> Siswa</div>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+      <a class="nav-item" href="kelasku.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Kelasku</a>
+      <a class="nav-item active" href="modul-belajar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Modul Belajar</a>
+      <a class="nav-item" href="tugas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Tugas</a>
+      <a class="nav-item" href="kuis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Kuis<span class="badge-count">1</span></a>
+      <a class="nav-item" href="nilai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Nilai</a>
+      <a class="nav-item" href="profil.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar-circle">BS</div>
+      <div class="who"><b>Budi Santoso</b><span>Siswa</span></div>
+    </div>
+    <a href="index.html" class="logout-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Keluar</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;">
+        <button class="mobile-menu-btn">☰</button>
+        <div><h1>Modul Belajar</h1><p class="sub">Kelas 8A Informatika — Pak Ahmad Ridwan</p></div>
+      </div>
+      <div class="topbar-icons">
+        <div style="position:relative;">
+          <button class="icon-btn" data-dropdown-trigger="notifPanel">🔔<span class="ping"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div style="padding:8px 10px;font-weight:800;font-size:13px;">Notifikasi</div>
+            <a href="#">📝 Kuis Bab 1 sudah tersedia</a>
+            <a href="#">📢 Materi baru: Bab 2 Perangkat Komputer</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="avatar-circle" data-dropdown-trigger="userPanel">BS</div>
+          <div class="dropdown-panel" id="userPanel">
+            <a href="#">👤 Profil Saya</a>
+            <hr><a href="index.html">🚪 Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="modul-layout">
+
+        <!-- Left: lesson navigator -->
+        <div class="card modul-nav-card">
+          <div class="prog-head">
+            <div class="row1"><span>Progress Kelas</span><b id="overallProgressLabel">28%</b></div>
+            <div class="progress-track"><div class="progress-fill" id="overallProgressBar" style="width:28%;background:var(--primary);"></div></div>
+            <small id="overallProgressSub">2 dari 7 pelajaran selesai</small>
+          </div>
+
+          <div class="bab-block">
+            <div class="bab-head"><span>Bab 1: Pengenalan Informatika</span><span class="cnt">2/3 selesai</span><span class="chev">▾</span></div>
+            <div class="lesson-list">
+              <div class="lesson-item done" data-lesson="l1">
+                <svg class="st-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div class="txt"><b>Apa itu Informatika?</b><small>▶ 12 menit</small></div>
+              </div>
+              <div class="lesson-item done" data-lesson="l2">
+                <svg class="st-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <div class="txt"><b>Sejarah Komputer</b><small>📖 8 menit</small></div>
+              </div>
+              <div class="lesson-item active" data-lesson="l3">
+                <svg class="st-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+                <div class="txt"><b>Peran Informatika di Kehidupan</b><small>▶ 15 menit</small></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bab-block collapsed">
+            <div class="bab-head"><span>Bab 2: Perangkat Komputer</span><span class="cnt">0/3 selesai</span><span class="chev">▾</span></div>
+            <div class="lesson-list">
+              <div class="lesson-item" data-lesson="l4">
+                <svg class="st-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+                <div class="txt"><b>Mengenal Perangkat Keras</b><small>▶ 10 menit</small></div>
+              </div>
+              <div class="lesson-item" data-lesson="l5">
+                <svg class="st-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+                <div class="txt"><b>Perangkat Lunak & Sistem Operasi</b><small>📖 9 menit</small></div>
+              </div>
+              <div class="lesson-item" data-lesson="l6">
+                <svg class="st-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+                <div class="txt"><b>Latihan: Perangkat Komputer</b><small>📝 10 soal</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: lesson content -->
+        <div>
+          <div class="card" style="overflow:hidden;">
+            <div class="video-box">
+              <img id="videoImg" src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&q=80" alt="Video pelajaran">
+              <button class="play-btn" id="playBtn" aria-label="Putar video">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              </button>
+              <div class="video-caption">
+                <b id="videoCaptionTitle">Peran Informatika di Kehidupan Sehari-hari</b>
+                <span id="videoCaptionMeta">Durasi: 15 menit · Pak Ahmad Ridwan</span>
+              </div>
+              <div class="video-progress"><i id="videoProgressBar" style="width:0%;"></i></div>
+            </div>
+
+            <div class="lesson-body">
+              <div class="lesson-meta-row">
+                <span class="badge badge-blue" id="lessonBabTag">Bab 1 · Pelajaran 3</span>
+                <a href="#" class="btn btn-outline btn-sm">Kuis Bab Ini →</a>
+              </div>
+              <h2 id="lessonTitle">Peran Informatika di Kehidupan Sehari-hari</h2>
+              <p class="info-line" id="lessonMeta">Video · 15 menit · Pak Ahmad Ridwan</p>
+
+              <div id="lessonBody">
+                <p>Informatika adalah ilmu yang mempelajari cara pengumpulan, penyimpanan, pengolahan, dan penyajian informasi menggunakan teknologi komputer. Di era digital ini, informatika memiliki peran yang sangat penting dalam kehidupan sehari-hari kita.</p>
+                <p>Mulai dari smartphone yang kita gunakan setiap hari, aplikasi transportasi online, sistem perbankan digital, hingga platform media sosial — semuanya dibangun di atas prinsip-prinsip dasar informatika.</p>
+                <p>Dalam bab ini, kita akan membahas bagaimana algoritma yang sederhana dapat membantu kita memecahkan masalah sehari-hari, dari memasak mie instan hingga navigasi ke tempat tujuan.</p>
+              </div>
+
+              <div class="tip-box">
+                <b>💡 Tahukah Kamu?</b>
+                <p id="tipText">Indonesia membutuhkan lebih dari 9 juta tenaga ahli digital pada tahun 2030. Belajar informatika sejak SMP adalah langkah awal yang tepat!</p>
+              </div>
+
+              <div class="lesson-photo">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&q=80" alt="Ruang kerja digital">
+              </div>
+            </div>
+          </div>
+
+          <div class="card materials-card">
+            <div class="card-pad">
+              <b style="font-size:16px;">📎 Unduh Materi</b>
+            </div>
+            <div style="padding:0 12px 12px;">
+              <div class="material-row mat-pdf">
+                <div class="fic">PDF</div>
+                <div class="finfo"><b>Materi Bab 1 - Pengenalan Informatika.pdf</b><span>2.4 MB</span></div>
+                <a href="#" class="dl" title="Unduh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+              </div>
+              <div class="material-row mat-ppt">
+                <div class="fic">PPT</div>
+                <div class="finfo"><b>Slide Presentasi Bab 1.pptx</b><span>5.1 MB</span></div>
+                <a href="#" class="dl" title="Unduh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+              </div>
+              <div class="material-row mat-doc">
+                <div class="fic">DOC</div>
+                <div class="finfo"><b>Lembar Kerja Siswa Bab 1.docx</b><span>1.2 MB</span></div>
+                <a href="#" class="dl" title="Unduh"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card lesson-footer-nav">
+            <button class="btn btn-outline">← Pelajaran Sebelumnya</button>
+            <button class="btn btn-primary" id="markCompleteBtn">✓ Tandai Selesai & Lanjut →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

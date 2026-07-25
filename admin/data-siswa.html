@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Siswa — SMART IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .btn-solid{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--primary),#4f46e5);color:#fff;font-family:inherit;font-weight:700;font-size:13.5px;cursor:pointer;box-shadow:0 4px 12px rgba(79,70,229,.25);transition:.15s ease;}
+  .btn-solid:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(79,70,229,.32);filter:brightness(1.04);}
+  .btn-outline{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1.5px solid var(--border);border-radius:10px;background:#fff;color:#374151;font-family:inherit;font-weight:700;font-size:13.5px;cursor:pointer;transition:.15s ease;}
+  .btn-outline:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
+  .btn-icon-sm{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:#fff;cursor:pointer;transition:.15s ease;color:#374151;}
+  .btn-icon-sm:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
+  .btn-icon-sm.danger:hover{border-color:#dc2626;color:#dc2626;background:#fef2f2;}
+  .table-wrap{overflow-x:auto;}
+  table.data-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  table.data-table th{text-align:left;padding:12px 14px;color:var(--gray);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;border-bottom:1.5px solid var(--border);white-space:nowrap;}
+  table.data-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap;}
+  table.data-table tr:last-child td{border-bottom:none;}
+  table.data-table tr:hover td{background:#fafbff;}
+  .name-cell{display:flex;align-items:center;gap:10px;}
+  .name-cell .mini-avatar{width:34px;height:34px;border-radius:50%;background:var(--green-light);color:var(--green-dark);font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .search-input{padding:9px 14px 9px 36px;border:1px solid var(--border);border-radius:9px;font-family:inherit;font-size:13.5px;width:230px;background:#fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%239ca3af" stroke-width="2"><circle cx="7" cy="7" r="5"/><line x1="11" y1="11" x2="15" y2="15"/></svg>') no-repeat 12px center;}
+  .select-input{padding:9px 12px;border:1px solid var(--border);border-radius:9px;font-family:inherit;font-size:13.5px;background:#fff;}
+  .toolbar-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .toolbar-left{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+  .status-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;}
+  .status-pill.active{background:var(--green-light);color:var(--green-dark);}
+  .status-pill.inactive{background:#f3f4f6;color:var(--gray);}
+  .pagination{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--gray);flex-wrap:wrap;gap:10px;}
+  .page-btns{display:flex;gap:6px;}
+  .page-btns button{width:30px;height:30px;border-radius:7px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:12.5px;}
+  .page-btns button.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(17,24,39,.45);align-items:center;justify-content:center;z-index:100;padding:20px;}
+  .modal-overlay.open{display:flex;}
+  .modal-box{background:#fff;border-radius:16px;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.2);}
+  .modal-box h3{margin:0 0 18px;font-size:17px;}
+  .form-row{margin-bottom:14px;}
+  .form-row label{font-size:12.5px;font-weight:600;color:var(--gray);display:block;margin-bottom:4px;}
+  .form-row input, .form-row select{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:13.5px;}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px;}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/logo.png" alt="Logo" class="logo-img" />
+      <div class="brand-name">SMART IT</div></div>
+    <div class="role-pill"><span class="dot"></span> Admin</div>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard-admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+      <a class="nav-item" href="kelas-admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Kelas</a>
+      <a class="nav-item" href="materi-kelas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Materi Kelas</a>
+      <a class="nav-item" href="data-guru.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>Data Guru</a>
+      <a class="nav-item active" href="data-siswa.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Data Siswa</a>
+      <a class="nav-item" href="profil-admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar-circle">SR</div>
+      <div class="who"><b>Siti Rahma</b><span>Admin</span></div>
+    </div>
+    <a href="../index.html" class="logout-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Keluar</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;">
+        <button class="mobile-menu-btn">☰</button>
+        <div>
+          <h1>Data Siswa</h1>
+          <p class="sub">Kelola akun dan informasi seluruh siswa</p>
+        </div>
+      </div>
+      <div class="topbar-icons">
+        <div style="position:relative;">
+          <button class="icon-btn" data-dropdown-trigger="notifPanel">🔔<span class="ping"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div style="padding:8px 10px;font-weight:800;font-size:13px;">Notifikasi</div>
+            <a href="#">🎓 2 siswa baru menunggu penempatan kelas</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="avatar-circle" data-dropdown-trigger="userPanel">SR</div>
+          <div class="dropdown-panel" id="userPanel">
+            <a href="profil-admin.html">👤 Profil Saya</a>
+            <hr>
+            <a href="../.html">🚪 Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="stat-cards">
+        <div class="card stat-card"><div class="ic" style="background:var(--primary-light);color:var(--primary);">🎓</div><h3>342</h3><p>Total Siswa · terdaftar</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--green-light);color:var(--green-dark);">✅</div><h3>340</h3><p>Akun Aktif</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--yellow-light);color:var(--yellow);">⏳</div><h3>2</h3><p>Belum Ditempatkan</p></div>
+      </div>
+
+      <div class="card card-pad">
+        <div class="toolbar-row">
+          <div class="toolbar-left">
+            <input class="search-input" type="text" placeholder="Cari nama / NIS...">
+            <select class="select-input">
+              <option>Semua Kelas</option>
+              <option>7A</option><option>7B</option><option>7C</option>
+              <option>8A</option><option>8B</option>
+              <option>9A</option><option>9B</option>
+            </select>
+          </div>
+          <button class="btn-solid" type="button" onclick="openModal('modalSiswa')">+ Tambah Siswa</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Nama</th><th>NIS</th><th>Kelas</th><th>Kontak</th><th>Status</th><th>Aksi</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="name-cell"><div class="mini-avatar">BS</div><b>Budi Santoso</b></div></td>
+                <td>2024081045</td><td>8A</td>
+                <td>budi.santoso@smartit.sch.id</td>
+                <td><span class="status-pill active">Aktif</span></td>
+                <td style="display:flex;gap:6px;">
+                  <button class="btn-icon-sm" title="Edit" onclick="openModal('modalSiswa')">✏️</button>
+                  <button class="btn-icon-sm danger" title="Hapus">🗑️</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="name-cell"><div class="mini-avatar">AP</div><b>Alya Putri</b></div></td>
+                <td>2026071012</td><td>7C</td>
+                <td>alya.putri@smartit.sch.id</td>
+                <td><span class="status-pill active">Aktif</span></td>
+                <td style="display:flex;gap:6px;">
+                  <button class="btn-icon-sm" title="Edit" onclick="openModal('modalSiswa')">✏️</button>
+                  <button class="btn-icon-sm danger" title="Hapus">🗑️</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="name-cell"><div class="mini-avatar">FN</div><b>Fajar Nugraha</b></div></td>
+                <td>2026071013</td><td>7C</td>
+                <td>fajar.nugraha@smartit.sch.id</td>
+                <td><span class="status-pill active">Aktif</span></td>
+                <td style="display:flex;gap:6px;">
+                  <button class="btn-icon-sm" title="Edit" onclick="openModal('modalSiswa')">✏️</button>
+                  <button class="btn-icon-sm danger" title="Hapus">🗑️</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="name-cell"><div class="mini-avatar">RH</div><b>Rangga Hidayat</b></div></td>
+                <td>2024091078</td><td>9A</td>
+                <td>rangga.hidayat@smartit.sch.id</td>
+                <td><span class="status-pill active">Aktif</span></td>
+                <td style="display:flex;gap:6px;">
+                  <button class="btn-icon-sm" title="Edit" onclick="openModal('modalSiswa')">✏️</button>
+                  <button class="btn-icon-sm danger" title="Hapus">🗑️</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="name-cell"><div class="mini-avatar">DA</div><b>Dewi Anjani</b></div></td>
+                <td>2025081099</td><td>8B</td>
+                <td>dewi.anjani@smartit.sch.id</td>
+                <td><span class="status-pill active">Aktif</span></td>
+                <td style="display:flex;gap:6px;">
+                  <button class="btn-icon-sm" title="Edit" onclick="openModal('modalSiswa')">✏️</button>
+                  <button class="btn-icon-sm danger" title="Hapus">🗑️</button>
+                </td>
+              </tr>
+              <tr>
+                <td><div class="name-cell"><div class="mini-avatar">MI</div><b>Muhammad Iqbal</b></div></td>
+                <td>2026071014</td><td>— Belum diatur</td>
+                <td>m.iqbal@smartit.sch.id</td>
+                <td><span class="status-pill inactive">Menunggu</span></td>
+                <td style="display:flex;gap:6px;">
+                  <button class="btn-icon-sm" title="Edit" onclick="openModal('modalSiswa')">✏️</button>
+                  <button class="btn-icon-sm danger" title="Hapus">🗑️</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination">
+          <span>Menampilkan 1–6 dari 342 siswa</span>
+          <div class="page-btns">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>…</button>
+            <button>57</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal Tambah/Edit Siswa -->
+<div class="modal-overlay" id="modalSiswa">
+  <div class="modal-box">
+    <h3>Tambah Siswa</h3>
+    <form id="siswaForm">
+      <div class="form-row">
+        <label>Nama Lengkap</label>
+        <input type="text" placeholder="Contoh: Rani Wulandari" required>
+      </div>
+      <div class="form-row">
+        <label>NIS</label>
+        <input type="text" placeholder="Contoh: 2026071099">
+      </div>
+      <div class="form-row">
+        <label>Kelas</label>
+        <select>
+          <option>7A Informatika</option>
+          <option>7B Informatika</option>
+          <option>7C Informatika</option>
+          <option>8A Informatika</option>
+          <option>8B Informatika</option>
+          <option>9A Informatika</option>
+          <option>9B Informatika</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Email</label>
+        <input type="email" placeholder="nama@smartit.sch.id">
+      </div>
+      <div class="form-row">
+        <label>No. Telepon</label>
+        <input type="text" placeholder="08xx-xxxx-xxxx">
+      </div>
+      <div class="form-row">
+        <label>Status</label>
+        <select>
+          <option>Aktif</option>
+          <option>Menunggu</option>
+          <option>Nonaktif</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-outline" onclick="closeModal('modalSiswa')">Batal</button>
+        <button type="submit" class="btn-solid">Simpan Siswa</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/script.js"></script>
+<script>
+  function openModal(id){ document.getElementById(id).classList.add('open'); }
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+  document.getElementById('modalSiswa').addEventListener('click', function(e){ if(e.target===this) closeModal('modalSiswa'); });
+  document.getElementById('siswaForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Data siswa berhasil disimpan.');
+    closeModal('modalSiswa');
+  });
+</script>
+</body>
+</html>

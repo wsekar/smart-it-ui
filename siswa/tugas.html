@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tugas — SMART IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .filter-chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+  .task-card{border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;}
+  .task-card .row1{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+  .task-card .row1 h4{margin:0;font-size:14.5px;flex:1;min-width:160px;}
+  .task-card .cls-tag{font-size:12px;color:var(--gray);margin-bottom:8px;}
+  .task-card .desc{font-size:13px;color:var(--gray-dark,#374151);margin:0 0 12px;}
+  .task-card .row2{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .task-card .due{font-size:12.5px;color:var(--gray);}
+  .task-card.overdue{border-color:#fecaca;background:#fff9f9;}
+  .upload-box{border:1.5px dashed var(--border);border-radius:10px;padding:16px;text-align:center;font-size:12.5px;color:var(--gray);margin-top:10px;display:none;}
+  .upload-box.show{display:block;}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/logo.png" alt="Logo" class="logo-img" />
+      <div class="brand-name">SMART IT</div>
+    </div>
+    <div class="role-pill"><span class="dot"></span> Siswa</div>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+      <a class="nav-item" href="kelasku.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Kelasku</a>
+      <a class="nav-item" href="modul-belajar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Modul Belajar</a>
+      <a class="nav-item active" href="tugas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Tugas</a>
+      <a class="nav-item" href="kuis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Kuis<span class="badge-count">1</span></a>
+      <a class="nav-item" href="nilai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Nilai</a>
+      <a class="nav-item" href="profil.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar-circle">BS</div>
+      <div class="who"><b>Budi Santoso</b><span>Siswa</span></div>
+    </div>
+    <a href="index.html" class="logout-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Keluar</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;">
+        <button class="mobile-menu-btn">☰</button>
+        <div>
+          <h1>Tugas</h1>
+          <p class="sub">Kelola dan kumpulkan tugas dari semua kelasmu</p>
+        </div>
+      </div>
+      <div class="topbar-icons">
+        <div style="position:relative;">
+          <button class="icon-btn" data-dropdown-trigger="notifPanel">🔔<span class="ping"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div style="padding:8px 10px;font-weight:800;font-size:13px;">Notifikasi</div>
+            <a href="#">✅ Tugas HTML & CSS telah dinilai</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="avatar-circle" data-dropdown-trigger="userPanel">BS</div>
+          <div class="dropdown-panel" id="userPanel">
+            <a href="profil.html">👤 Profil Saya</a>
+            <hr>
+            <a href="index.html">🚪 Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="stat-cards">
+        <div class="card stat-card"><div class="ic" style="background:var(--yellow-light);color:var(--yellow);">⏳</div><h3>2</h3><p>Belum Dikerjakan · perlu perhatian</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--primary-light);color:var(--primary);">📤</div><h3>1</h3><p>Menunggu Penilaian</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--green-light);color:var(--green-dark);">✅</div><h3>5</h3><p>Sudah Dinilai</p></div>
+      </div>
+
+      <div class="card card-pad">
+        <div class="filter-chip-row">
+          <button class="chip-filter active" data-status="Semua">Semua</button>
+          <button class="chip-filter" data-status="Belum">Belum Dikerjakan</button>
+          <button class="chip-filter" data-status="Menunggu">Menunggu Penilaian</button>
+          <button class="chip-filter" data-status="Dinilai">Sudah Dinilai</button>
+        </div>
+
+        <div class="task-card overdue" data-status="Belum">
+          <div class="row1">
+            <h4>Membuat Flowchart Proses Login</h4>
+            <span class="badge badge-red">Belum Dikerjakan</span>
+          </div>
+          <div class="cls-tag">Kelas 8A Informatika · Pak Ahmad Ridwan</div>
+          <p class="desc">Buatlah flowchart sederhana untuk proses login akun, lengkap dengan kondisi jika password salah.</p>
+          <div class="row2">
+            <span class="due">⏰ Batas: Besok, 23:59</span>
+            <button class="btn btn-primary btn-sm" data-upload-btn>Kumpulkan Tugas</button>
+          </div>
+          <div class="upload-box"><input type="file" style="margin-bottom:6px;"><br>Unggah file jawaban (PDF/DOC/gambar, maks 10MB)</div>
+        </div>
+
+        <div class="task-card" data-status="Belum">
+          <div class="row1">
+            <h4>Latihan Perangkat Komputer</h4>
+            <span class="badge badge-red">Belum Dikerjakan</span>
+          </div>
+          <div class="cls-tag">Kelas 8A Informatika · Pak Ahmad Ridwan</div>
+          <p class="desc">Kerjakan lembar kerja identifikasi perangkat keras & lunak pada modul Bab 2.</p>
+          <div class="row2">
+            <span class="due">⏰ Batas: 6 hari lagi</span>
+            <button class="btn btn-primary btn-sm" data-upload-btn>Kumpulkan Tugas</button>
+          </div>
+          <div class="upload-box"><input type="file" style="margin-bottom:6px;"><br>Unggah file jawaban (PDF/DOC/gambar, maks 10MB)</div>
+        </div>
+
+        <div class="task-card" data-status="Menunggu">
+          <div class="row1">
+            <h4>Membuat Halaman Profil Sederhana</h4>
+            <span class="badge badge-yellow">Menunggu Penilaian</span>
+          </div>
+          <div class="cls-tag">Kelas 8B Informatika · Bu Sari Dewi</div>
+          <p class="desc">Tugas HTML & CSS: buat halaman profil pribadi dengan foto, biodata, dan gaya sederhana.</p>
+          <div class="row2">
+            <span class="due">📤 Dikumpulkan: 2 hari lalu</span>
+            <span style="font-size:12.5px;color:var(--gray);">File: profil-budi.zip</span>
+          </div>
+        </div>
+
+        <div class="task-card" data-status="Dinilai">
+          <div class="row1">
+            <h4>Tugas HTML & CSS</h4>
+            <span class="badge badge-green">Sudah Dinilai</span>
+          </div>
+          <div class="cls-tag">Kelas 8A Informatika · Pak Ahmad Ridwan</div>
+          <p class="desc">Membuat struktur halaman web sederhana menggunakan tag HTML dasar dan styling CSS.</p>
+          <div class="row2">
+            <span class="due">✓ Dikumpulkan tepat waktu</span>
+            <span style="font-weight:800;color:var(--green-dark);font-size:14px;">Nilai: 88/100</span>
+          </div>
+        </div>
+
+        <div class="task-card" data-status="Dinilai">
+          <div class="row1">
+            <h4>Rangkuman Sejarah Komputer</h4>
+            <span class="badge badge-green">Sudah Dinilai</span>
+          </div>
+          <div class="cls-tag">Kelas 8A Informatika · Pak Ahmad Ridwan</div>
+          <p class="desc">Merangkum perkembangan komputer dari generasi pertama hingga saat ini.</p>
+          <div class="row2">
+            <span class="due">✓ Dikumpulkan tepat waktu</span>
+            <span style="font-weight:800;color:var(--green-dark);font-size:14px;">Nilai: 92/100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/script.js"></script>
+<script>
+  document.querySelectorAll('.chip-filter').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('.chip-filter').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var status = chip.dataset.status;
+      document.querySelectorAll('.task-card').forEach(function(card){
+        card.style.display = (status === 'Semua' || card.dataset.status === status) ? '' : 'none';
+      });
+    });
+  });
+  document.querySelectorAll('[data-upload-btn]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var box = btn.closest('.task-card').querySelector('.upload-box');
+      box.classList.toggle('show');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nilai — SMART IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .grade-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .grade-table th{text-align:left;padding:10px 12px;font-size:12px;color:var(--gray);border-bottom:1px solid var(--border);font-weight:700;}
+  .grade-table td{padding:11px 12px;border-bottom:1px solid var(--border);}
+  .grade-table tr:last-child td{border-bottom:none;}
+  .grade-badge{font-weight:800;padding:3px 10px;border-radius:20px;font-size:12.5px;display:inline-block;}
+  .grade-good{background:var(--green-light);color:var(--green-dark);}
+  .grade-mid{background:var(--yellow-light);color:#92610a;}
+  .grade-low{background:#fee2e2;color:#b91c1c;}
+  .class-grade-card{border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;}
+  .class-grade-card .head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+  .class-grade-card .head b{font-size:14.5px;}
+  .class-grade-card .head .teacher{font-size:12px;color:var(--gray);display:block;}
+  .avg-pill{font-weight:800;font-size:16px;color:var(--primary);}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/logo.png" alt="Logo" class="logo-img" />
+      <div class="brand-name">SMART IT</div>
+    </div>
+    <div class="role-pill"><span class="dot"></span> Siswa</div>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+      <a class="nav-item" href="kelasku.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Kelasku</a>
+      <a class="nav-item" href="modul-belajar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Modul Belajar</a>
+      <a class="nav-item" href="tugas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Tugas</a>
+      <a class="nav-item" href="kuis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Kuis<span class="badge-count">1</span></a>
+      <a class="nav-item active" href="nilai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Nilai</a>
+      <a class="nav-item" href="profil.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar-circle">BS</div>
+      <div class="who"><b>Budi Santoso</b><span>Siswa</span></div>
+    </div>
+    <a href="index.html" class="logout-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Keluar</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;">
+        <button class="mobile-menu-btn">☰</button>
+        <div>
+          <h1>Nilai</h1>
+          <p class="sub">Rekap nilai tugas dan kuis dari semua kelas</p>
+        </div>
+      </div>
+      <div class="topbar-icons">
+        <div style="position:relative;">
+          <button class="icon-btn" data-dropdown-trigger="notifPanel">🔔<span class="ping"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div style="padding:8px 10px;font-weight:800;font-size:13px;">Notifikasi</div>
+            <a href="#">✅ Tugas HTML & CSS telah dinilai</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="avatar-circle" data-dropdown-trigger="userPanel">BS</div>
+          <div class="dropdown-panel" id="userPanel">
+            <a href="profil.html">👤 Profil Saya</a>
+            <hr>
+            <a href="index.html">🚪 Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="stat-cards">
+        <div class="card stat-card"><div class="ic" style="background:var(--purple-light);color:var(--purple);">📈</div><h3>82</h3><p>Rata-rata Nilai · dari 100 poin</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--green-light);color:var(--green-dark);">🏆</div><h3>92</h3><p>Nilai Tertinggi</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--primary-light);color:var(--primary);">📝</div><h3>11</h3><p>Total Item Dinilai</p></div>
+      </div>
+
+      <div class="card card-pad">
+        <div class="class-grade-card">
+          <div class="head">
+            <div><b>Kelas 8A Informatika</b><span class="teacher">Pak Ahmad Ridwan</span></div>
+            <div class="avg-pill">86</div>
+          </div>
+          <table class="grade-table">
+            <thead><tr><th>Item Penilaian</th><th>Tipe</th><th>Tanggal</th><th>Nilai</th></tr></thead>
+            <tbody>
+              <tr><td>Tugas HTML & CSS</td><td>Tugas</td><td>18 Jul 2026</td><td><span class="grade-badge grade-good">88</span></td></tr>
+              <tr><td>Rangkuman Sejarah Komputer</td><td>Tugas</td><td>12 Jul 2026</td><td><span class="grade-badge grade-good">92</span></td></tr>
+              <tr><td>Kuis Sejarah Komputer</td><td>Kuis</td><td>10 Jul 2026</td><td><span class="grade-badge grade-good">90</span></td></tr>
+              <tr><td>Latihan Algoritma Dasar</td><td>Tugas</td><td>3 Jul 2026</td><td><span class="grade-badge grade-mid">75</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="class-grade-card">
+          <div class="head">
+            <div><b>Kelas 8B Informatika</b><span class="teacher">Bu Sari Dewi</span></div>
+            <div class="avg-pill">78</div>
+          </div>
+          <table class="grade-table">
+            <thead><tr><th>Item Penilaian</th><th>Tipe</th><th>Tanggal</th><th>Nilai</th></tr></thead>
+            <tbody>
+              <tr><td>Kuis Sistem Operasi</td><td>Kuis</td><td>15 Jul 2026</td><td><span class="grade-badge grade-mid">78</span></td></tr>
+              <tr><td>Tugas Keamanan Digital</td><td>Tugas</td><td>5 Jul 2026</td><td><span class="grade-badge grade-low">65</span></td></tr>
+              <tr><td>Kuis Internet Dasar</td><td>Kuis</td><td>28 Jun 2026</td><td><span class="grade-badge grade-good">91</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="class-grade-card">
+          <div class="head">
+            <div><b>Kelas 9A Informatika</b><span class="teacher">Pak Doni Kurniawan</span></div>
+            <div class="avg-pill">85</div>
+          </div>
+          <table class="grade-table">
+            <thead><tr><th>Item Penilaian</th><th>Tipe</th><th>Tanggal</th><th>Nilai</th></tr></thead>
+            <tbody>
+              <tr><td>Kuis Jaringan Dasar</td><td>Kuis</td><td>20 Jul 2026</td><td><span class="grade-badge grade-good">87</span></td></tr>
+              <tr><td>Tugas Basis Data Sederhana</td><td>Tugas</td><td>8 Jul 2026</td><td><span class="grade-badge grade-good">83</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin — SMART IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .btn-solid{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--primary),#4f46e5);color:#fff;font-family:inherit;font-weight:700;font-size:13.5px;cursor:pointer;box-shadow:0 4px 12px rgba(79,70,229,.25);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;}
+  .btn-solid:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(79,70,229,.32);filter:brightness(1.04);}
+  .btn-solid:active{transform:translateY(0);box-shadow:0 2px 8px rgba(79,70,229,.25);}
+  .btn-outline{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1.5px solid var(--border);border-radius:10px;background:#fff;color:#374151;font-family:inherit;font-weight:700;font-size:13.5px;cursor:pointer;transition:.15s ease;}
+  .btn-outline:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
+  .table-wrap{overflow-x:auto;}
+  table.data-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  table.data-table th{text-align:left;padding:12px 14px;color:var(--gray);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;border-bottom:1.5px solid var(--border);white-space:nowrap;}
+  table.data-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap;}
+  table.data-table tr:last-child td{border-bottom:none;}
+  table.data-table tr:hover td{background:#fafbff;}
+  .status-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;}
+  .status-pill.active{background:var(--green-light);color:var(--green-dark);}
+  .status-pill.warn{background:var(--yellow-light);color:#92700c;}
+  .level-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .level-row:last-child{margin-bottom:0;}
+  .level-label{width:76px;font-size:13px;font-weight:700;color:#374151;flex-shrink:0;}
+  .level-count{width:56px;text-align:right;font-size:12.5px;color:var(--gray);flex-shrink:0;}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/logo.png" alt="Logo" class="logo-img" />
+      <div class="brand-name">SMART IT</div></div>
+    <div class="role-pill"><span class="dot"></span> Admin</div>
+    <nav class="nav-group">
+      <a class="nav-item active" href="dashboard-admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+      <a class="nav-item" href="kelas-admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Kelas</a>
+      <a class="nav-item" href="materi-kelas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Materi Kelas</a>
+      <a class="nav-item" href="data-guru.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>Data Guru</a>
+      <a class="nav-item" href="data-siswa.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>Data Siswa</a>
+      <a class="nav-item" href="profil-admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar-circle">SR</div>
+      <div class="who"><b>Siti Rahma</b><span>Admin</span></div>
+    </div>
+    <a href="../index.html" class="logout-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Keluar</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;">
+        <button class="mobile-menu-btn">☰</button>
+        <div>
+          <h1>Dashboard Admin</h1>
+          <p class="sub" id="todayDate">Sabtu, 25 Juli 2026</p>
+        </div>
+      </div>
+      <div class="topbar-icons">
+        <div style="position:relative;">
+          <button class="icon-btn" data-dropdown-trigger="notifPanel">🔔<span class="ping"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div style="padding:8px 10px;font-weight:800;font-size:13px;">Notifikasi</div>
+            <a href="#">👨‍🏫 Guru baru menunggu verifikasi</a>
+            <a href="#">🎓 15 siswa baru mendaftar minggu ini</a>
+            <a href="#">📚 Materi Kelas 9A belum lengkap</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="avatar-circle" data-dropdown-trigger="userPanel">SR</div>
+          <div class="dropdown-panel" id="userPanel">
+            <a href="profil-admin.html">👤 Profil Saya</a>
+            <hr>
+            <a href="../index.html">🚪 Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="welcome-banner">
+        <p class="lead">Selamat datang,</p>
+        <h2>Siti Rahma! 👋</h2>
+        <p class="sub">Berikut ringkasan aktivitas sistem SMART IT hari ini.</p>
+      </div>
+
+      <div class="stat-cards">
+        <div class="card stat-card"><div class="ic" style="background:var(--primary-light);color:var(--primary);">👨‍🏫</div><h3>18</h3><p>Total Guru · akun aktif</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--green-light);color:var(--green-dark);">🎓</div><h3>342</h3><p>Total Siswa · terdaftar</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--purple-light);color:var(--purple);">🏫</div><h3>12</h3><p>Total Kelas · aktif</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--yellow-light);color:var(--yellow);">📚</div><h3>156</h3><p>Total Materi · seluruh kelas</p></div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="card card-pad">
+          <div class="card-title-row"><h3>Pendaftaran Siswa Baru</h3><span class="badge badge-blue">6 Bulan Terakhir</span></div>
+          <div class="chart-wrap">
+            <svg viewBox="0 0 560 190" width="100%" height="190" preserveAspectRatio="none">
+              <rect x="40" y="70" width="60" height="100" rx="6" fill="var(--primary)"/>
+              <rect x="130" y="45" width="60" height="125" rx="6" fill="var(--primary)"/>
+              <rect x="220" y="58" width="60" height="112" rx="6" fill="var(--primary)"/>
+              <rect x="310" y="30" width="60" height="140" rx="6" fill="var(--primary)"/>
+              <rect x="400" y="20" width="60" height="150" rx="6" fill="var(--primary)"/>
+              <rect x="490" y="35" width="60" height="135" rx="6" fill="var(--primary)"/>
+            </svg>
+          </div>
+          <div class="chart-labels"><span>Feb</span><span>Mar</span><span>Apr</span><span>Mei</span><span>Jun</span><span>Jul</span></div>
+        </div>
+
+        <div class="card card-pad">
+          <h3 style="margin:0 0 20px;font-size:16px;">Distribusi Kelas per Tingkat</h3>
+          <div class="level-row">
+            <span class="level-label">Kelas 7</span>
+            <div class="progress-track" style="flex:1;"><div class="progress-fill" style="width:33%;background:var(--primary);"></div></div>
+            <span class="level-count">4 kelas</span>
+          </div>
+          <div class="level-row">
+            <span class="level-label">Kelas 8</span>
+            <div class="progress-track" style="flex:1;"><div class="progress-fill" style="width:33%;background:var(--green-dark);"></div></div>
+            <span class="level-count">4 kelas</span>
+          </div>
+          <div class="level-row">
+            <span class="level-label">Kelas 9</span>
+            <div class="progress-track" style="flex:1;"><div class="progress-fill" style="width:33%;background:var(--purple);"></div></div>
+            <span class="level-count">4 kelas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="card card-pad">
+          <div class="card-title-row"><h3>Kelas Teraktif</h3><a href="kelas-admin.html" style="color:var(--primary);font-weight:700;font-size:13.5px;">Lihat Semua</a></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Kelas</th><th>Wali Kelas</th><th>Siswa</th><th>Progress</th></tr></thead>
+              <tbody>
+                <tr><td><b>9A Informatika</b></td><td>Pak Doni Kurniawan</td><td>30</td><td style="width:120px;"><div class="progress-track"><div class="progress-fill" style="width:88%;background:var(--purple);"></div></div></td></tr>
+                <tr><td><b>8A Informatika</b></td><td>Pak Ahmad Ridwan</td><td>32</td><td style="width:120px;"><div class="progress-track"><div class="progress-fill" style="width:72%;background:var(--primary);"></div></div></td></tr>
+                <tr><td><b>7C Informatika</b></td><td>Bu Nina Marlina</td><td>28</td><td style="width:120px;"><div class="progress-track"><div class="progress-fill" style="width:65%;background:var(--green-dark);"></div></div></td></tr>
+                <tr><td><b>8B Informatika</b></td><td>Bu Sari Dewi</td><td>29</td><td style="width:120px;"><div class="progress-track"><div class="progress-fill" style="width:45%;background:var(--yellow);"></div></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <h3 style="margin:0 0 6px;font-size:16px;">Aktivitas Terbaru</h3>
+          <div class="activity-item">
+            <div class="aic" style="background:var(--primary-light);color:var(--primary);">👨‍🏫</div>
+            <div><p>Guru baru ditambahkan: <b>Rina Amelia</b></p><time>🕒 1 jam lalu</time></div>
+          </div>
+          <div class="activity-item">
+            <div class="aic" style="background:var(--green-light);color:var(--green-dark);">🎓</div>
+            <div><p>15 siswa baru bergabung di <b>Kelas 7C</b></p><time>🕒 3 jam lalu</time></div>
+          </div>
+          <div class="activity-item">
+            <div class="aic" style="background:var(--purple-light);color:var(--purple);">📚</div>
+            <div><p>Materi baru: <b>Struktur Data Dasar</b> ditambahkan</p><time>🕒 1 hari lalu</time></div>
+          </div>
+          <div class="activity-item">
+            <div class="aic" style="background:#f3f4f6;color:var(--gray);">🏫</div>
+            <div><p>Kelas baru dibuat: <b>9D Informatika</b></p><time>🕒 2 hari lalu</time></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-pad">
+        <div class="card-title-row"><h3>Guru & Siswa Baru Mendaftar</h3><div style="display:flex;gap:10px;"><button class="btn-outline" onclick="location.href='data-guru.html'" type="button">+ Guru</button><button class="btn-solid" onclick="location.href='data-siswa.html'" type="button">+ Siswa</button></div></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Nama</th><th>Peran</th><th>Kelas / Mapel</th><th>Tanggal Daftar</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><b>Rina Amelia</b></td><td>Guru</td><td>Bahasa Inggris</td><td>24 Jul 2026</td><td><span class="status-pill warn">Menunggu</span></td></tr>
+              <tr><td><b>Fajar Nugraha</b></td><td>Siswa</td><td>7C Informatika</td><td>23 Jul 2026</td><td><span class="status-pill active">Aktif</span></td></tr>
+              <tr><td><b>Alya Putri</b></td><td>Siswa</td><td>7C Informatika</td><td>23 Jul 2026</td><td><span class="status-pill active">Aktif</span></td></tr>
+              <tr><td><b>Doni Kurniawan</b></td><td>Guru</td><td>Informatika</td><td>21 Jul 2026</td><td><span class="status-pill active">Aktif</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

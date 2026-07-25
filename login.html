@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masuk — SMART IT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="auth-shell">
+      <div class="auth-visual">
+        <div class="brand">
+          <img src="assets/logo2.png" alt="Logo" class="logo-img" />
+          <div class="brand-name">SMART IT</div>
+        </div>
+        <div class="auth-photo">
+          <img
+            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80"
+            alt="Siswa belajar di kelas"
+          />
+        </div>
+        <h2>Belajar Informatika<br />Kapan Saja, Di Mana Saja</h2>
+        <p>
+          Akses ratusan modul pelajaran, video interaktif, dan kuis latihan —
+          sepenuhnya untuk siswa dan guru SMP Indonesia.
+        </p>
+        <div class="auth-chips">
+          <span>✓ Video Pembelajaran</span>
+          <span>✓ Kuis Interaktif</span>
+          <span>✓ Kolaborasi Kelas</span>
+        </div>
+        <p class="auth-quote">
+          "Learn Informatics Anywhere, Anytime." — SMART IT LMS
+        </p>
+      </div>
+
+      <div class="auth-form-side">
+        <div>
+          <div class="auth-card">
+            <h1>Selamat Datang 👋</h1>
+            <p>Masuk ke platform belajarmu.</p>
+
+            <form
+              data-validate
+              data-success-msg="Berhasil masuk! Mengalihkan ke dashboard..."
+              data-redirect="dashboard.html"
+            >
+              <div class="field">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="nama@sekolah.sch.id"
+                  required
+                />
+                <small class="err">Email wajib diisi</small>
+              </div>
+              <div class="field">
+                <label for="password">Password</label>
+                <div class="field-input">
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="eye-btn"
+                    aria-label="Tampilkan password"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </button>
+                </div>
+                <small class="err">Password wajib diisi</small>
+              </div>
+
+              <label
+                style="
+                  display: block;
+                  font-size: 13.5px;
+                  font-weight: 700;
+                  margin-bottom: 8px;
+                  color: var(--ink-soft);
+                "
+                >Saya adalah</label
+              >
+              <div class="role-toggle">
+                <div class="role-opt selected" data-role="siswa">
+                  <div class="r-icon">👥</div>
+                  <b>Siswa</b><span>Belajar & ikuti kelas</span>
+                </div>
+                <div class="role-opt" data-role="guru">
+                  <div class="r-icon">🎓</div>
+                  <b>Guru</b><span>Kelola kelas & materi</span>
+                </div>
+              </div>
+
+              <div class="form-foot-link"><a href="#">Lupa password?</a></div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                Masuk ke Platform
+              </button>
+            </form>
+
+            <div class="auth-switch">
+              Belum punya akun? <a href="register.html">Daftar </a>
+            </div>
+          </div>
+          <p class="legal-note">
+            Dengan mendaftar, kamu menyetujui Syarat & Ketentuan dan Kebijakan
+            Privasi SMART IT.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
