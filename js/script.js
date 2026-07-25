@@ -1,5 +1,5 @@
 /* =====================================================
-   EduInformatika LMS — Shared Interactions
+   SMART IT LMS — Shared Interactions
    ===================================================== */
 
 // ---------- toast helper ----------
