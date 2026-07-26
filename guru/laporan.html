@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan — SMART IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="laporan">
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'" />
+      <div class="brand-name">SMART IT</div>
+    </div>
+    <div class="role-pill"><span class="dot"></span> Guru</div>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+      <a class="nav-item" href="kelola-kelas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Kelola Kelas<span class="badge-count" id="navReqBadge">3</span></a>
+      <a class="nav-item" href="kelola-modul.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Kelola Modul</a>
+      <a class="nav-item" href="buat-kuis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Buat Kuis</a>
+      <a class="nav-item" href="nilai-laporan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Nilai &amp; Laporan</a>
+      <a class="nav-item active" href="laporan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.1-2.5-2.5L7 14.7"/></svg>Laporan</a>
+      <a class="nav-item" href="profil.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar-circle">AR</div>
+      <div class="who"><b>Pak Ahmad Rid...</b><span>Guru</span></div>
+    </div>
+    <a href="index.html" class="logout-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Keluar</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;">
+        <button class="mobile-menu-btn">☰</button>
+        <div>
+          <h1>Laporan</h1>
+          <p class="sub">Ringkasan aktivitas mengajar & belajar di semua kelas</p>
+        </div>
+      </div>
+      <div class="topbar-icons">
+        <div style="position:relative;">
+          <button class="icon-btn" id="bellBtn" data-dropdown-trigger="notifPanel">🔔<span class="ping" id="bellPing"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div style="padding:8px 10px;font-weight:800;font-size:13px;">Notifikasi</div>
+            <a href="#">🙋 3 permintaan bergabung menunggu persetujuan</a>
+            <a href="#">📄 Tugas baru dikumpulkan di Kelas 8A</a>
+            <a href="#">✅ Kuis Algoritma Dasar selesai dinilai otomatis</a>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div class="avatar-circle" data-dropdown-trigger="userPanel">AR</div>
+          <div class="dropdown-panel" id="userPanel">
+            <a href="profil.html">👤 Profil Saya</a>
+            <hr>
+            <a href="index.html">🚪 Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- Filter -->
+      <div class="card card-pad" style="display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap;">
+        <div class="form-group" style="margin:0;min-width:160px;">
+          <label>Kelas</label>
+          <select id="filterClass">
+            <option value="all">Semua Kelas</option>
+            <option>7A</option>
+            <option>7B</option>
+            <option>8A</option>
+            <option>8B</option>
+            <option>9A</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin:0;min-width:160px;">
+          <label>Periode</label>
+          <select id="filterPeriod">
+            <option>Minggu Ini</option>
+            <option selected>Bulan Ini</option>
+            <option>Semester Genap 2025/2026</option>
+            <option>Semester Ganjil 2025/2026</option>
+          </select>
+        </div>
+        <div style="flex:1;"></div>
+        <button class="btn btn-outline">⬇️ Unduh Excel</button>
+        <button class="btn btn-primary">⬇️ Unduh PDF</button>
+      </div>
+
+      <!-- Ringkasan -->
+      <div class="stat-cards" style="margin-top:20px;">
+        <div class="card stat-card"><div class="ic" style="background:var(--primary-light);color:var(--primary);">📅</div><h3>92%</h3><p>Kehadiran Rata-rata · bulan ini</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--green-light);color:var(--green-dark);">📖</div><h3>41</h3><p>Modul Diakses · oleh siswa</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--purple-light);color:var(--purple);">🧩</div><h3>7</h3><p>Kuis Selesai · via Quizizz</p></div>
+        <div class="card stat-card"><div class="ic" style="background:var(--yellow-light);color:var(--yellow);">📈</div><h3>81</h3><p>Rata-rata Nilai · semua kelas</p></div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="card card-pad">
+          <div class="card-title-row">
+            <div>
+              <h3>Tren Aktivitas Belajar</h3>
+              <p class="sub" style="margin:2px 0 0;font-size:12.5px;color:var(--gray);">Kehadiran, modul, dan kuis — 4 minggu terakhir</p>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <svg id="aktivitasChart" viewBox="0 0 560 190" width="100%" height="190" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="chart-labels"><span>Minggu 1</span><span>Minggu 2</span><span>Minggu 3</span><span>Minggu 4</span></div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="card-title-row"><h3>Kehadiran per Kelas</h3></div>
+          <div>
+            <div class="kelas-progress-row"><span>7A</span><div class="progress-track"><div class="progress-fill" style="width:95%;background:var(--primary);"></div></div><b>95%</b></div>
+            <div class="kelas-progress-row"><span>7B</span><div class="progress-track"><div class="progress-fill" style="width:88%;background:var(--primary);"></div></div><b>88%</b></div>
+            <div class="kelas-progress-row"><span>8A</span><div class="progress-track"><div class="progress-fill" style="width:97%;background:var(--primary);"></div></div><b>97%</b></div>
+            <div class="kelas-progress-row"><span>8B</span><div class="progress-track"><div class="progress-fill" style="width:85%;background:var(--primary);"></div></div><b>85%</b></div>
+            <div class="kelas-progress-row"><span>9A</span><div class="progress-track"><div class="progress-fill" style="width:90%;background:var(--primary);"></div></div><b>90%</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daftar laporan yang bisa diunduh -->
+      <div class="card card-pad">
+        <div class="card-title-row"><h3>Laporan Tersedia</h3></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Nama Laporan</th>
+                <th>Cakupan</th>
+                <th>Periode</th>
+                <th>Diperbarui</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Laporan Kehadiran Siswa</b></td>
+                <td>Semua Kelas</td>
+                <td>Bulan Ini</td>
+                <td>26 Jul 2026</td>
+                <td><a href="#" class="link-action">Unduh</a></td>
+              </tr>
+              <tr>
+                <td><b>Laporan Aktivitas Modul</b></td>
+                <td>Semua Kelas</td>
+                <td>Bulan Ini</td>
+                <td>25 Jul 2026</td>
+                <td><a href="#" class="link-action">Unduh</a></td>
+              </tr>
+              <tr>
+                <td><b>Laporan Hasil Kuis (Quizizz)</b></td>
+                <td>8A, 9A, 7B</td>
+                <td>Bulan Ini</td>
+                <td>24 Jul 2026</td>
+                <td><a href="#" class="link-action">Unduh</a></td>
+              </tr>
+              <tr>
+                <td><b>Rekap Nilai Semester</b></td>
+                <td>Semua Kelas</td>
+                <td>Semester Genap 2025/2026</td>
+                <td>20 Jul 2026</td>
+                <td><a href="#" class="link-action">Unduh</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

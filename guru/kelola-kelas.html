@@ -36,22 +36,120 @@ padding:25px;
 
 
 
-/* HEADER */
+/* PAGE TOPBAR (disamakan dengan dashboard) */
 
-.header{
+.page-topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
 margin-bottom:25px;
 }
 
-.title{
+.page-topbar h1{
 font-size:26px;
 font-weight:800;
 color:#111827;
 }
 
-.subtitle{
+.page-topbar .sub{
 color:#6b7280;
 font-size:14px;
 margin-top:5px;
+}
+
+.mobile-menu-btn{
+display:none;
+background:none;
+border:none;
+font-size:22px;
+margin-right:12px;
+cursor:pointer;
+color:#111827;
+}
+
+.topbar-icons{
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.icon-btn{
+position:relative;
+width:40px;
+height:40px;
+border-radius:50%;
+background:#f4f6fb;
+border:1px solid #eee;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:17px;
+cursor:pointer;
+}
+
+.ping{
+position:absolute;
+top:6px;
+right:7px;
+width:8px;
+height:8px;
+border-radius:50%;
+background:#ef4444;
+border:2px solid #fff;
+}
+
+.dropdown-panel{
+display:none;
+position:absolute;
+right:0;
+top:48px;
+background:white;
+border:1px solid #eee;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+min-width:230px;
+z-index:50;
+overflow:hidden;
+}
+
+.dropdown-panel.show{
+display:block;
+}
+
+.dropdown-panel a{
+display:block;
+padding:10px 14px;
+font-size:13.5px;
+color:#374151;
+text-decoration:none;
+}
+
+.dropdown-panel a:hover{
+background:#f4f6fb;
+}
+
+.dropdown-panel hr{
+border:none;
+border-top:1px solid #eee;
+margin:4px 0;
+}
+
+.topbar-avatar{
+width:40px;
+height:40px;
+border-radius:50%;
+background:#dbeafe;
+color:#2563eb;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+font-size:13px;
+cursor:pointer;
+}
+
+@media(max-width:900px){
+.mobile-menu-btn{display:inline-block;}
 }
 
 
@@ -495,18 +593,35 @@ Buat Kuis
 
 
 
-<div class="header">
+<div class="page-topbar">
 
-
-<div class="title">
-Kelola Kelas
+<div style="display:flex;align-items:center;">
+<button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+<div>
+<h1>Kelola Kelas</h1>
+<p class="sub">Manajemen kelas dan siswa</p>
+</div>
 </div>
 
-
-<div class="subtitle">
-Manajemen kelas dan siswa
+<div class="topbar-icons">
+<div style="position:relative;">
+<button class="icon-btn" data-dropdown-trigger="notifPanel">🔔<span class="ping"></span></button>
+<div class="dropdown-panel" id="notifPanel">
+<div style="padding:10px 14px;font-weight:800;font-size:13px;">Notifikasi</div>
+<a href="#">🙋 3 permintaan bergabung menunggu persetujuan</a>
+<a href="#">📄 Tugas baru dikumpulkan di Kelas 8A</a>
+<a href="#">✅ Kuis Algoritma Dasar selesai dinilai otomatis</a>
 </div>
-
+</div>
+<div style="position:relative;">
+<div class="topbar-avatar" data-dropdown-trigger="userPanel">AR</div>
+<div class="dropdown-panel" id="userPanel">
+<a href="profil.html">👤 Profil Saya</a>
+<hr>
+<a href="index.html">🚪 Keluar</a>
+</div>
+</div>
+</div>
 
 </div>
 
@@ -986,6 +1101,25 @@ this.classList.add("active");
 
 
 
+/* ================= TOPBAR DROPDOWNS & MOBILE MENU (samakan dengan dashboard) ================= */
+
+document.querySelectorAll("[data-dropdown-trigger]").forEach(trigger=>{
+trigger.addEventListener("click", e=>{
+e.stopPropagation();
+const panel=document.getElementById(trigger.getAttribute("data-dropdown-trigger"));
+document.querySelectorAll(".dropdown-panel").forEach(p=>{ if(p!==panel) p.classList.remove("show"); });
+panel.classList.toggle("show");
+});
+});
+
+document.addEventListener("click", ()=>{
+document.querySelectorAll(".dropdown-panel").forEach(p=>p.classList.remove("show"));
+});
+
+document.getElementById("mobileMenuBtn")?.addEventListener("click", e=>{
+e.stopPropagation();
+document.querySelector(".sidebar").classList.toggle("open");
+});
 
 
 

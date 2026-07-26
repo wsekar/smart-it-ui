@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kelola Modul</title>
+<title>Kelola Modul — SMART IT</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
@@ -15,31 +15,99 @@ body{
   background:#f6f7fb;
 }
 
+/* ===== APP SHELL / SIDEBAR (samakan dengan dashboard) ===== */
+.app-shell{display:flex;min-height:100vh;align-items:stretch;}
+
+.sidebar{
+  width:260px;
+  flex-shrink:0;
+  background:#ffffff;
+  border-right:1px solid #eee;
+  padding:22px 18px;
+  display:flex;
+  flex-direction:column;
+  position:sticky;
+  top:0;
+  height:100vh;
+}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.logo-img{width:30px;height:30px;object-fit:contain;border-radius:6px;}
+.brand-name{font-weight:800;font-size:17px;color:#1e293b;letter-spacing:0.2px;}
+
+.role-pill{
+  display:flex;align-items:center;gap:8px;
+  background:#ecfdf5;color:#059669;
+  font-weight:600;font-size:13px;
+  padding:8px 12px;border-radius:8px;
+  margin-bottom:14px;
+}
+.role-pill .dot{width:8px;height:8px;border-radius:50%;background:#10b981;}
+
+.nav-group{display:flex;flex-direction:column;gap:3px;flex:1;overflow-y:auto;}
+.nav-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 12px;border-radius:10px;
+  color:#5b6472;text-decoration:none;
+  font-size:14px;font-weight:600;
+  position:relative;
+}
+.nav-item svg{width:18px;height:18px;flex-shrink:0;}
+.nav-item:hover{background:#f4f6fb;color:#2563eb;}
+.nav-item.active{background:#2563eb;color:#ffffff;}
+.badge-count{
+  margin-left:auto;background:#ef4444;color:#fff;
+  font-size:11px;font-weight:700;
+  padding:2px 7px;border-radius:20px;
+}
+
+.sidebar-user{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 4px 10px;border-top:1px solid #eee;margin-top:10px;
+}
+.avatar-circle{
+  width:36px;height:36px;border-radius:50%;
+  background:#dbeafe;color:#2563eb;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:13px;flex-shrink:0;
+  cursor:pointer;
+}
+.who{display:flex;flex-direction:column;font-size:13px;line-height:1.3;overflow:hidden;}
+.who b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;}
+.who span{color:#98a2b3;font-size:12px;}
+.logout-link{
+  display:flex;align-items:center;gap:8px;
+  color:#ef4444;text-decoration:none;
+  font-size:13.5px;font-weight:700;margin-top:8px;padding:0 4px;
+}
+
+.main-content{flex:1;min-width:0;overflow-x:hidden;}
+
 /* MAIN */
 .content{
   padding:20px 30px;
 }
 
-/* HEADER */
-.header{
+/* PAGE TOPBAR (disamakan dengan dashboard) */
+.page-topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:10px;
 }
-.title{font-size:22px;font-weight:600;}
-.subtitle{font-size:14px;color:#777;}
+.page-topbar h1{font-size:22px;font-weight:700;color:#111827;}
+.page-topbar .sub{font-size:14px;color:#777;margin-top:4px;}
+.mobile-menu-btn{display:none;background:none;border:none;font-size:22px;margin-right:12px;cursor:pointer;color:#111827;}
+.topbar-icons{display:flex;align-items:center;gap:16px;}
+.icon-btn{position:relative;width:40px;height:40px;border-radius:50%;background:#f4f6fb;border:1px solid #eee;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;}
+.ping{position:absolute;top:6px;right:7px;width:8px;height:8px;border-radius:50%;background:#ef4444;border:2px solid #fff;}
+.dropdown-panel{display:none;position:absolute;right:0;top:48px;background:white;border:1px solid #eee;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.08);min-width:230px;z-index:50;overflow:hidden;}
+.dropdown-panel.show{display:block;}
+.dropdown-panel a{display:block;padding:10px 14px;font-size:13.5px;color:#374151;text-decoration:none;}
+.dropdown-panel a:hover{background:#f4f6fb;}
+.dropdown-panel hr{border:none;border-top:1px solid #eee;margin:4px 0;}
+@media(max-width:900px){.mobile-menu-btn{display:inline-block;}}
 
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-.avatar{
-  width:36px;height:36px;border-radius:50%;background:#ddd;
-}
-
-/* TOPBAR */
+/* TOPBAR (search/filter row) */
 .topbar{
   display:flex;
   align-items:center;
@@ -159,9 +227,9 @@ tr:hover{background:#f9fbff;}
 .aktif{background:#dcfce7;color:#16a34a;}
 .draft{background:#fef3c7;color:#ca8a04;}
 
-/* DROPDOWN */
+/* DROPDOWN (aksi tabel) */
 .action{position:relative;cursor:pointer;}
-.dropdown{
+.action .dropdown{
   display:none;
   position:absolute;
   right:0;
@@ -171,11 +239,11 @@ tr:hover{background:#f9fbff;}
   border-radius:10px;
   box-shadow:0 5px 10px rgba(0,0,0,0.05);
 }
-.dropdown div{
+.action .dropdown div{
   padding:8px 12px;
   cursor:pointer;
 }
-.dropdown div:hover{
+.action .dropdown div:hover{
   background:#f5f5f5;
 }
 
@@ -224,22 +292,69 @@ tr:hover{background:#f9fbff;}
   border-radius:50%;
   padding:2px 8px;
 }
+
+@media (max-width:900px){
+  .sidebar{position:fixed;left:-280px;z-index:1000;transition:left 0.25s ease;box-shadow:0 0 30px rgba(0,0,0,0.15);}
+  .sidebar.open{left:0;}
+}
 </style>
 </head>
 
 <body>
 
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="../assets/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'" />
+      <div class="brand-name">SMART IT</div>
+    </div>
+    <div class="role-pill"><span class="dot"></span> Guru</div>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+      <a class="nav-item" href="kelola-kelas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Kelola Kelas<span class="badge-count">3</span></a>
+      <a class="nav-item active" href="kelola-modul.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Kelola Modul</a>
+      <a class="nav-item" href="buat-kuis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Buat Kuis</a>
+      <a class="nav-item" href="nilai-laporan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Nilai &amp; Laporan</a>
+      <a class="nav-item" href="laporan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.1-2.5-2.5L7 14.7"/></svg>Laporan</a>
+      <a class="nav-item" href="profil.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil</a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar-circle">AR</div>
+      <div class="who"><b>Pak Ahmad Rid...</b><span>Guru</span></div>
+    </div>
+    <a href="index.html" class="logout-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Keluar</a>
+  </aside>
+
+  <main class="main-content">
+
 <div class="content">
 
-<div class="header">
-  <div>
-    <div class="title">Kelola Materi</div>
-    <div class="subtitle">Unggah modul, buat kuis, dan kelola konten</div>
+<div class="page-topbar">
+  <div style="display:flex;align-items:center;">
+    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    <div>
+      <h1>Kelola Materi</h1>
+      <p class="sub">Unggah modul, buat kuis, dan kelola konten</p>
+    </div>
   </div>
-
-  <div class="header-right">
-    <i data-lucide="bell"></i>
-    <div class="avatar"></div>
+  <div class="topbar-icons">
+    <div style="position:relative;">
+      <button class="icon-btn" data-dropdown-trigger="notifPanel">🔔<span class="ping"></span></button>
+      <div class="dropdown-panel" id="notifPanel">
+        <div style="padding:10px 14px;font-weight:800;font-size:13px;">Notifikasi</div>
+        <a href="#">🙋 3 permintaan bergabung menunggu persetujuan</a>
+        <a href="#">📄 Tugas baru dikumpulkan di Kelas 8A</a>
+        <a href="#">✅ Kuis Algoritma Dasar selesai dinilai otomatis</a>
+      </div>
+    </div>
+    <div style="position:relative;">
+      <div class="avatar-circle" data-dropdown-trigger="userPanel">AR</div>
+      <div class="dropdown-panel" id="userPanel">
+        <a href="profil.html">👤 Profil Saya</a>
+        <hr>
+        <a href="index.html">🚪 Keluar</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -258,7 +373,7 @@ tr:hover{background:#f9fbff;}
     <div class="filter">Assignment</div>
   </div>
 
-  <button class="btn btn-outline" onclick="alert('Buat Kuis diklik')">+ Buat Kuis</button>
+  <button class="btn btn-outline" onclick="window.location.href='buat-kuis.html'">+ Buat Kuis</button>
   <button class="btn btn-primary" onclick="openModal()">Unggah Modul</button>
 </div>
 
@@ -285,6 +400,9 @@ tr:hover{background:#f9fbff;}
 </table>
 </div>
 
+</div>
+
+  </main>
 </div>
 
 <!-- MODAL -->
@@ -377,12 +495,29 @@ render();
 };
 });
 
-/* DROPDOWN */
+/* DROPDOWN (aksi tabel) */
 function toggle(i){
-document.querySelectorAll(".dropdown").forEach(d=>d.style.display="none");
+document.querySelectorAll(".action .dropdown").forEach(d=>d.style.display="none");
 let el=document.getElementById("dd"+i);
 el.style.display = el.style.display==="block" ? "none":"block";
 }
+
+/* ===== TOPBAR DROPDOWNS & MOBILE MENU (samakan dengan dashboard) ===== */
+document.querySelectorAll("[data-dropdown-trigger]").forEach(trigger=>{
+  trigger.addEventListener("click", e=>{
+    e.stopPropagation();
+    const panel=document.getElementById(trigger.getAttribute("data-dropdown-trigger"));
+    document.querySelectorAll(".dropdown-panel").forEach(p=>{ if(p!==panel) p.classList.remove("show"); });
+    panel.classList.toggle("show");
+  });
+});
+document.addEventListener("click", ()=>{
+  document.querySelectorAll(".dropdown-panel").forEach(p=>p.classList.remove("show"));
+});
+document.getElementById("mobileMenuBtn")?.addEventListener("click", e=>{
+  e.stopPropagation();
+  document.querySelector(".sidebar").classList.toggle("open");
+});
 </script>
 
 </body>
